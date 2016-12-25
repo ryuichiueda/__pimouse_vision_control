@@ -43,7 +43,7 @@ class FaceToFace():
         face = cascade.detectMultiScale(gimg,1.1,1,cv2.CASCADE_FIND_BIGGEST_OBJECT)
 
         if len(face) == 0:
-        self.monitor(None,org)
+            self.monitor(None,org)
             return 0.0
 
         r = face[0]
@@ -52,8 +52,8 @@ class FaceToFace():
         pos_x_rate = (1.0*r[0] + r[2]/2 - wid)/wid
         print pos_x_rate
 
-        rot = -0.5*pos_x_rate*math.pi
-        return rot  #画面のキワに顔がある場合にpi[rad/s]に
+        rot = -0.25*pos_x_rate*math.pi
+        return rot  #画面のキワに顔がある場合にpi/4[rad/s]に
 
     def control(self):
         m = Twist()
@@ -66,7 +66,7 @@ if __name__ == '__main__':
     rospy.init_node('face_detect')
 
     f = FaceToFace()
-    rate = rospy.Rate(5)
+    rate = rospy.Rate(10)
     while not rospy.is_shutdown():
         rospy.loginfo(f.control())
         rate.sleep()
