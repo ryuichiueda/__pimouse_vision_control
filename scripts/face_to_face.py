@@ -51,6 +51,7 @@ class FaceToFace():
         wid = org.shape[1]/2
         pos_x_rate = (r[0] + r[2]/2 - wid)*1.0/wid
         rot = -0.25*pos_x_rate*math.pi
+        rospy.loginfo("detected %f",rot)
         return rot  #画面のキワに顔がある場合にpi/4[rad/s]に
 
     def control(self):
@@ -58,7 +59,6 @@ class FaceToFace():
         m.linear.x = 0.0
         m.angular.z = self.rot_vel()
         self.cmd_vel.publish(m)
- 
 
 if __name__ == '__main__':
     rospy.init_node('face_detect')
@@ -66,5 +66,5 @@ if __name__ == '__main__':
 
     rate = rospy.Rate(10)
     while not rospy.is_shutdown():
-        rospy.loginfo(f.control())
+        f.control()
         rate.sleep()
