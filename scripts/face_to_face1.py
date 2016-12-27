@@ -26,7 +26,7 @@ if __name__ == '__main__':
     rospy.init_node('face_detect')
     f = FaceToFace()
 
-    rate = rospy.Rate(5)
+    rate = rospy.Rate(10)
     while not rospy.is_shutdown():
         rospy.loginfo(f.control())
         rate.sleep()
