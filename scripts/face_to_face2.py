@@ -11,7 +11,7 @@ class FaceToFace():
         self.image_org = None
 
     def get_image(self,img):
-    	try:
+        try:
             self.image_org = self.bridge.imgmsg_to_cv2(img, "bgr8")
         except CvBridgeError as e:
             rospy.logerr(e)
@@ -39,7 +39,7 @@ if __name__ == '__main__':
     rospy.init_node('face_detect')
     f = FaceToFace()
 
-    rate = rospy.Rate(5)
+    rate = rospy.Rate(10)
     while not rospy.is_shutdown():
         rospy.loginfo(f.control())
         rate.sleep()

@@ -8,8 +8,8 @@ from cv_bridge import CvBridge, CvBridgeError
 
 class FaceToFace():
     def __init__(self):
-        self.sub = rospy.Subscriber("/cv_camera/image_raw", Image, self.get_image)
-        self.pub = rospy.Publisher("face", Image, queue_size=10)
+        sub = rospy.Subscriber("/cv_camera/image_raw", Image, self.get_image)
+        self.pub = rospy.Publisher("face", Image, queue_size=1)
         self.bridge = CvBridge()
         self.image_org = None
 
@@ -36,7 +36,6 @@ class FaceToFace():
             return 0.0
 
         org = self.image_org
-
         gimg = cv2.cvtColor(org,cv2.COLOR_BGR2GRAY)
         classifier = "/usr/share/opencv/haarcascades/haarcascade_frontalface_default.xml"
         cascade = cv2.CascadeClassifier(classifier)
@@ -48,10 +47,9 @@ class FaceToFace():
 
         r = face[0]
         self.monitor(r,org)
-        wid = org.shape[1]/2
-        pos_x_rate = (1.0*r[0] + r[2]/2 - wid)/wid
-        print pos_x_rate
 
+        wid = org.shape[1]/2
+        pos_x_rate = (r[0] + r[2]/2 - wid)*1.0/wid
         rot = -0.25*pos_x_rate*math.pi
         return rot  #画面のキワに顔がある場合にpi/4[rad/s]に
 
@@ -64,8 +62,8 @@ class FaceToFace():
 
 if __name__ == '__main__':
     rospy.init_node('face_detect')
-
     f = FaceToFace()
+
     rate = rospy.Rate(10)
     while not rospy.is_shutdown():
         rospy.loginfo(f.control())
