@@ -7,5 +7,6 @@ script:
   - bash -xve ./test/travis_package_make.bash
   - source ~/catkin_ws/devel/setup.bash
   - ./test/travis_prepare_dummy_files.bash
+  - export PYTHONPATH=/usr/local/lib/python2.7/dist-packages:$PYTHONPATH
   - rostest pimouse_vision_control test-left-face.launch
   - rostest pimouse_vision_control test-right-face.launch
