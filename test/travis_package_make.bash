@@ -1,5 +1,9 @@
 #!/bin/bash -xve
 
+sudo apt-get install libopencv-dev
+sudo apt-get install python-opencv
+sudo apt-get install ros-indigo-cv-bridge
+sudo apt-get install ros-indigo-cv-camera
 
 #sync and make
 rsync -av ./ ~/catkin_ws/src/pimouse_vision_control/
@@ -10,8 +14,3 @@ git clone https://github.com/citueda/pimouse_ros.git
 
 cd ~/catkin_ws
 catkin_make
-
-cd ~
-git clone https://github.com/osgee/opencv_installer.git
-cd opencv_installer
-source opencv_installer.sh
