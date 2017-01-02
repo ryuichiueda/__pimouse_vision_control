@@ -1,0 +1,5 @@
+<launch>
+  <include file="$(find pimouse_ros)/pimouse.launch" /> 
+  <node pkg="rosbag" type="play" name="player" output="screen" args="--clock $(find pimouse_vision_control)/bagfiles/face-left.bag" required="true" />
+  <node pkg="pimouse_vision_control" name="face_to_face" type="face_to_face.py" output="screen" />
+</launch>
