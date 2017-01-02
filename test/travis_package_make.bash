@@ -1,6 +1,6 @@
 #!/bin/bash -xve
 
-apt get install ros-indigo-cv-bridge
+apt-get install ros-indigo-cv-bridge
 
 #sync and make
 rsync -av ./ ~/catkin_ws/src/pimouse_vision_control/
