@@ -19,3 +19,5 @@ git clone https://github.com/citueda/pimouse_ros.git
 
 cd ~/catkin_ws
 catkin_make
+
+sudo find / | grep cv2.so
