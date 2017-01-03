@@ -43,5 +43,5 @@ class VisionTest(unittest.TestCase):
                 "wrong direction. l: " + str(l_turn_rate) + " r:" + str(r_turn_rate))
 
 if __name__ == '__main__':
-    rospy.init_node('travis_test_face_to_face')
-    rostest.rosrun('pimouse_visual_control','travis_test_face_to_face', VisionTest)
+    rospy.init_node('test_face_to_face')
+    rostest.rosrun('pimouse_visual_control','test_face_to_face', VisionTest)
