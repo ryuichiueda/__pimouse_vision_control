@@ -5,7 +5,9 @@ import rosnode, rospy, sys, time
 class VisionTest(unittest.TestCase):
     def get_file_freq(self,lr):
         with open("/dev/rtmotor_raw_"+lr+"0","r") as f:
-            return int(f.readline().rstrip())
+            s = f.readline().rstrip()
+            if s != "": return int(s)
+            else:       return 0
 
     def test_put_freq(self):
         count, l_turn_count,r_turn_count = 0, 0, 0
@@ -26,7 +28,7 @@ class VisionTest(unittest.TestCase):
             prev_lhz, prev_rhz = lhz, rhz
 
             count += 1
-            rate.spin()
+            rate.sleep()
 
         r_turn_rate = 1.0*r_turn_count / count
         l_turn_rate = 1.0*l_turn_count / count
