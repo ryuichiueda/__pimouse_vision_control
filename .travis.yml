@@ -7,6 +7,6 @@ script:
   - bash -xve ./test/travis_package_make.bash
   - source ~/catkin_ws/devel/setup.bash
   - ./test/travis_prepare_dummy_files.bash
-  - export PYTHONPATH=$PYTHONPATH:/opt/ros/indigo/lib/python2.7/dist-packages:/usr/lib/python2.7/dist-packages
+  - export PYTHONPATH=$PYTHONPATH:/usr/lib/python2.7/dist-packages
   - rostest pimouse_vision_control test-left-face.launch
   - rostest pimouse_vision_control test-right-face.launch
