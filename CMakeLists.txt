@@ -5,9 +5,7 @@ project(pimouse_vision_control)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  cv_bridge
   rospy
-  sensor_msgs
   std_msgs
 )
 
@@ -103,7 +101,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES pimouse_vision_control
-#  CATKIN_DEPENDS cv_bridge rospy sensor_msgs std_msgs
+#  CATKIN_DEPENDS rospy std_msgs
 #  DEPENDS system_lib
 )
 
